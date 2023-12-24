@@ -55,6 +55,8 @@ class Player:
         except Exception:
             print(f"{self.name} does not have any {item_name}s")
 
+    def add_item(self, item):
+        self.items.append(item)
 
 class Item:
     def __init__(self, name, quantity, effects=None):
