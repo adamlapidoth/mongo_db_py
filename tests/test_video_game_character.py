@@ -3,3 +3,25 @@ def test_attack(player1, player2):
     assert player1.energy == 20
     assert player2.health < 50
 
+
+def test_heal_beyond_max_health(player1, powder):
+    assert player1.max_health == 50
+    player1.add_item(powder)
+    player1.use_item("powder")
+    assert player1.max_health == 50
+
+
+def test_use_item(player2, powder, potion):
+    assert powder.quantity == 1
+    player2.add_item(powder)
+    player2.add_item(potion)
+    assert len(player2.items) == 2
+    player2.use_item("potion")
+    assert len(player2.items) == 1
+    assert potion.quantity == 0
+
+
+def test_add_item(player1, potion, powder):
+    player1.add_item(potion)
+    player1.add_item(powder)
+    assert len(player1.items) == 2

@@ -52,9 +52,11 @@ class Player:
             if item.quantity == 0:
                 self.items.remove(item)
 
-        except Exception:
+        except AttributeError:
             print(f"{self.name} does not have any {item_name}s")
 
+    def add_item(self, item):
+        self.items.append(item)
 
 class Item:
     def __init__(self, name, quantity, effects=None):
