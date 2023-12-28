@@ -9,7 +9,9 @@ player1 = Player(name="player1", max_health=50, max_energy=25)
 
 def insert_to_mongodb(client: MongoClient, player: Player):
     game_db = client["game"]
-    game_db.create_collection(name="players")
+    game_collections = game_db.list_collection_names()
+    if "players" not in game_collections:
+        game_db.create_collection(name="players")
     players_col = game_db["players"]
     players_col.insert_one(player.stat())
 
