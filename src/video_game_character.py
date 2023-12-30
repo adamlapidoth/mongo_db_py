@@ -91,7 +91,7 @@ class Item:
         if not isinstance(other, Item):
             # don't attempt to compare against unrelated types
             return NotImplemented
-    
+
         return (
             self.name == other.name
             and self.quantity == other.quantity
