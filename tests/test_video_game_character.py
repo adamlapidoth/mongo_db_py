@@ -1,3 +1,6 @@
+import copy
+
+
 def test_attack(player1, player2):
     player1.attack(player2)
     assert player1.energy == 20
@@ -25,3 +28,10 @@ def test_add_item(player1, potion, powder):
     player1.add_item(potion)
     player1.add_item(powder)
     assert len(player1.items) == 2
+
+
+def test_stat(player2, potion):
+    expected = copy.deepcopy(vars(player2))
+    expected["items"].append(copy.deepcopy(vars(potion)))
+    player2.add_item(potion)
+    assert player2.stat() == expected
