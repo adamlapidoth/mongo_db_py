@@ -3,6 +3,7 @@ from __future__ import (
 )  # need this to type hint Player from the method attack
 
 import copy
+import json
 
 import numpy as np
 
@@ -37,7 +38,7 @@ class Player:
             self.health = self.max_health
 
     def stat(self):
-        return vars(self)
+        return json.loads(json.dumps(self, default=lambda o: o.__dict__))
 
     def use_item(self, item_name):
         try:
