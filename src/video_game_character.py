@@ -87,3 +87,14 @@ class Item:
             f"{self.__class__.__name__}(name={self.name}, quantity={self.quantity},"
             f" effects={self.effects}"
         )
+
+    def __eq__(self, other: Item):
+        if not isinstance(other, Item):
+            # don't attempt to compare against unrelated types
+            return NotImplemented
+    
+        return (
+            self.name == other.name
+            and self.quantity == other.quantity
+            and self.effects == other.effects
+        )

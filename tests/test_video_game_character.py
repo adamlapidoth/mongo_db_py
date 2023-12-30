@@ -35,3 +35,7 @@ def test_stat(player2, potion):
     expected["items"].append(copy.deepcopy(vars(potion)))
     player2.add_item(potion)
     assert player2.stat() == expected
+
+
+def test_player_eq(player2, potion):
+    assert player2 != potion
