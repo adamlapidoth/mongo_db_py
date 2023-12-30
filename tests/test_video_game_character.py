@@ -32,7 +32,8 @@ def test_add_item(player1, potion, powder):
 
 def test_stat(player2, potion):
     expected = copy.deepcopy(vars(player2))
-    expected["items"].append(copy.deepcopy(vars(potion)))
+    potion_copy = copy.deepcopy(potion)
+    expected["items"].append(potion_copy)
     player2.add_item(potion)
     assert player2.stat() == expected
 
