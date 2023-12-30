@@ -29,13 +29,17 @@ def find_player_by_name(
 
 def load_player(db: Database, player_name: str) -> Player:
     player_dict = find_player_by_name(db, player_name)
-    player_dict.pop("_id", None)
-    player_dict.pop("health", None)
-    player_dict.pop("energy", None)
     item_list = [Item(**it) for it in player_dict["items"]]
-    player = Player(**player_dict)
-    player.items = item_list
-    return player
+    player_obj = Player(
+        name=player_dict["name"],
+        max_health=player_dict["max_health"],
+        max_energy=player_dict["max_energy"],
+    )
+    player_obj.items = item_list
+    player_obj.health = player_dict["health"]
+    player_obj.energy = player_dict["energy"]
+
+    return player_obj
 
 
 if __name__ == "__main__":
