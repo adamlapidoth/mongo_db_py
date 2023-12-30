@@ -16,7 +16,7 @@ def insert_to_mongodb(client: MongoClient, player: Player):
     if "players" not in game_collections:
         game_db.create_collection(name="players")
     players_col = game_db["players"]
-    if not find_player_by_name(game_db, player.stat()["name"]):
+    if not find_player_by_name(game_db, player.name):
         players_col.insert_one(player.stat())
 
 
