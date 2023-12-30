@@ -30,7 +30,10 @@ def load_player(db: Database, player_name: str) -> Player:
     player_dict.pop("_id", None)
     player_dict.pop("health", None)
     player_dict.pop("energy", None)
-    return Player(**player_dict)
+    item_list = [Item(**it) for it in player_dict["items"]]
+    player = Player(**player_dict)
+    player.items = item_list
+    return player
 
 
 if __name__ == "__main__":
