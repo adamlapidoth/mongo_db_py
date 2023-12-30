@@ -1,11 +1,13 @@
 from pymongo import MongoClient
 from pymongo.database import Database
 
-from video_game_character import Player
+from video_game_character import Player, Item
 
 my_client = MongoClient(host="localhost", port=27017)
 
+potion = Item(name="potion", quantity=1, effects=[{"heal": 100}])
 player1 = Player(name="player1", max_health=50, max_energy=25)
+player2 = Player(name="player2", max_health=200, max_energy=300, items=[potion])
 
 
 def insert_to_mongodb(client: MongoClient, player: Player):
@@ -40,3 +42,6 @@ if __name__ == "__main__":
     insert_to_mongodb(client=my_client, player=player1)
     player1_loaded = load_player(my_client.game, player_name="player1")
     assert player1_loaded == player1
+    insert_to_mongodb(client=my_client, player=player2)
+    player2_loaded = load_player(my_client.game, player_name="player2")
+    assert player2_loaded == player2
