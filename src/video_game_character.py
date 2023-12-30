@@ -98,3 +98,6 @@ class Item:
             and self.quantity == other.quantity
             and self.effects == other.effects
         )
+
+    def stat(self):
+        return vars(self)
