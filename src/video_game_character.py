@@ -58,6 +58,21 @@ class Player:
     def add_item(self, item):
         self.items.append(item)
 
+    def __eq__(self, other: Player):
+        if not isinstance(other, Player):
+            # don't attempt to compare against unrelated types
+            return NotImplemented
+
+        return (
+            self.name == other.name
+            and self.max_health == other.max_health
+            and self.health == other.health
+            and self.max_energy == other.max_energy
+            and self.energy == other.energy
+            and self.items == other.items
+        )
+
+
 class Item:
     def __init__(self, name, quantity, effects=None):
         if effects is None:
