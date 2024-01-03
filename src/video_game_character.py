@@ -58,6 +58,7 @@ class Player:
     def add_item(self, item):
         self.items.append(item)
 
+
 class Item:
     def __init__(self, name, quantity, effects=None):
         if effects is None:
